@@ -1,6 +1,7 @@
 <h1>Websites#index</h1>
 <%- @websites.each do |w| %>
 <%=link_to w.name, account_website_path(@account, w) %>
+<%= w.check_status %>
 <% end %>
 
 <%=link_to 'Add new website', new_account_website_path(params[:account_id]) %>

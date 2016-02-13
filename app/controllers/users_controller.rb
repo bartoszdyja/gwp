@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       login(@user)
       redirect_to @user, flash: { notice: 'User successfully created' }
     else
-      flash[:error] = 'Cannot save user'
+      flash.now[:error] = 'Cannot save user'
       render 'new'
     end
   end
