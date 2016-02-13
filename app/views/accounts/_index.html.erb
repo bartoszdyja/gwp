@@ -1,6 +1,6 @@
 <h1>Your accounts</h1>
 <%- @accounts.each do |a| %>
-  <%= link_to a.name, user_account_path(current_user, a) %>
+  <%= link_to a.name, account_websites_path(a) %>
 <% end %>
 
 <%= link_to 'Add new account', new_user_account_path(current_user) %>

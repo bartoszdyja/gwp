@@ -1,0 +1,6 @@
+<h1>Add new website</h1>
+<%= form_for(@website, url: account_websites_path, method: :post) do |w| %>
+  <%= w.text_field :name %>
+  <%= w.text_field :url %>
+  <%= w.button :submit %>
+  <% end %>

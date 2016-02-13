@@ -7,9 +7,9 @@ Rails.application.routes.draw do
     resources :accounts
   end
 
-  # resources :accounts do
-  #   resources :websites
-  # end
+  resources :accounts, only: [:show] do
+    resources :websites
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
