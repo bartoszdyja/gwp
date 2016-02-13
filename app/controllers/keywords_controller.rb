@@ -16,6 +16,12 @@ class KeywordsController < ApplicationController
   def show
   end
 
+  def destroy
+    Keyword.find(params[:id]).destroy
+    @website = Website.find(params[:website_id])
+    redirect_to account_website_path(@website.account, @website), flash: {alert: 'Keyword deleted'}
+  end
+
   private
 
   def keyword_params

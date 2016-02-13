@@ -1,6 +1,6 @@
 class Keyword < ActiveRecord::Base
   belongs_to :website
-  has_many :positions
+  has_many :positions, dependent: :destroy
 
   after_save :check_position
 
