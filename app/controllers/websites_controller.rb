@@ -15,6 +15,9 @@ class WebsitesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def index
     @account = Account.find(params[:account_id])
     @websites = @account.websites
