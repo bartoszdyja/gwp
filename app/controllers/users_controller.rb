@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
-      redirect_to @user, flash: { notice: 'User successfully created' }
+      redirect_to root_path, flash: { notice: 'User successfully created' }
     else
       flash.now[:error] = 'Cannot save user'
       render 'new'
