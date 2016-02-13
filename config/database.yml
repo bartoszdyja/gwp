@@ -2,12 +2,12 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: bartosz
-  password: 123
 
 development:
   <<: *default
   database: website_position_development
+  username: bartosz
+  password: 123
 
 test:
   <<: *default
