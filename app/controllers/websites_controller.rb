@@ -10,7 +10,7 @@ class WebsitesController < ApplicationController
     if @website.save
       redirect_to account_websites_path, flash: {success: 'Website added'}
     else
-      flash[:error] = 'Something went wrong'
+      flash.now[:error] = 'Something went wrong'
       render 'new'
     end
   end

@@ -1,6 +1,11 @@
 <%- if user_signed_in? %>
-  <h1>Welcome <%= current_user.first_name %></h1>
+  <h4><%= current_user.first_name %>'s dashboard</h4>
   <%= render 'accounts/index' %>
 <% else  %>
-  <%= render 'sessions/form' %>
+<div class="row">
+  <div class="col-md-3 col-md-offset-4">
+    <h3>Sign in</h3>
+    <%= render 'sessions/form' %>
+  </div>
+</div>
 <% end %>
