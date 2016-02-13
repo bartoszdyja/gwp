@@ -8,8 +8,10 @@
 </head>
 <body>
 <%= render 'layouts/navigation'%>
-<%= flash[:error] %>
-<%= yield %>
+<div class='container'>
+  <%= flash_messages %>
+  <%= yield %>
+</div>
 <%= console %>
 </body>
 </html>
