@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, except: [:index]
+
   def new
     @user = User.new
   end
@@ -25,5 +27,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)
+  end
+
+  def authenticate_user
+    redirect_to login_path, flash: {error: 'You need to sign in.' } if current_user != User.find(params[:id])
   end
 end
