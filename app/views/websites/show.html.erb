@@ -1,1 +1,12 @@
 <h1>Website</h1>
+<%= form_for(@keyword, url: website_keywords_path(@website), method: :post) do |k| %>
+  <%= k.text_field :phrase %>
+  <%= k.button :submit %>
+<% end %>
+
+<%- @keywords.each do |p| %>
+<p>
+<%= p.phrase %>
+<%= p.positions.last.try(:rank) %>
+</p>
+<% end %>

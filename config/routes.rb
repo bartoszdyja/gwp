@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'keywords/new'
+
+  get 'keywords/create'
+
+  get 'keywords/show'
+
   get 'login', to: 'sessions#new', as: 'login'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
@@ -9,6 +15,10 @@ Rails.application.routes.draw do
 
   resources :accounts, only: [:show] do
     resources :websites
+  end
+
+  resources :websites do
+    resources :keywords
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

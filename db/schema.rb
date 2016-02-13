@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213151418) do
+ActiveRecord::Schema.define(version: 20160213164700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,14 +25,23 @@ ActiveRecord::Schema.define(version: 20160213151418) do
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 
-  create_table "positions", force: :cascade do |t|
-    t.integer  "rank"
+  create_table "keywords", force: :cascade do |t|
+    t.string   "phrase"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "website_id"
   end
 
-  add_index "positions", ["website_id"], name: "index_positions_on_website_id", using: :btree
+  add_index "keywords", ["website_id"], name: "index_keywords_on_website_id", using: :btree
+
+  create_table "positions", force: :cascade do |t|
+    t.integer  "rank"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "keyword_id"
+  end
+
+  add_index "positions", ["keyword_id"], name: "index_positions_on_keyword_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -55,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160213151418) do
   add_index "websites", ["account_id"], name: "index_websites_on_account_id", using: :btree
 
   add_foreign_key "accounts", "users"
-  add_foreign_key "positions", "websites"
+  add_foreign_key "keywords", "websites"
+  add_foreign_key "positions", "keywords"
   add_foreign_key "websites", "accounts"
 end
