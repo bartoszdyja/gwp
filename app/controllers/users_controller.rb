@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @accounts = current_user.accounts
   end
 
   def show
