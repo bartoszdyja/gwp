@@ -1,12 +1,35 @@
-<h1>Website</h1>
-<%= form_for(@keyword, url: website_keywords_path(@website), method: :post) do |k| %>
-  <%= k.text_field :phrase %>
-  <%= k.button :submit %>
-<% end %>
+<div class="row">
+  <div class="col-md-7 col-md-offset-1">
+    <h3><%=@website.name%></h3>
+    <hr>
+    <h5>Keywords:</h5>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th>Phrase</th>
+          <th>Current google position</th>
+          <th>Highest</th>
+          <th>Lowest</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @keywords.each do |p| %>
+          <tr>
+            <td><%= p.phrase %></td>
+            <td><%= p.positions.last.try(:rank) %></td>
+            <td><%= p.positions.last.try(:rank) %></td>
+            <td><%= p.positions.last.try(:rank) %></td>
+            <td><%=link_to 'Destroy', website_keyword_path(@website, p), method: :delete %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <hr>
+    <%= simple_form_for(@keyword, url: website_keywords_path(@website), method: :post) do |k| %>
+      <%= k.input :phrase %>
+      <%= k.button :submit, 'Add phrase' %>
+    <% end %>
 
-<%- @keywords.each do |p| %>
-<p>
-<%= p.phrase %>
-<%= p.positions.last.try(:rank) %>
-</p>
-<% end %>
+  </div>
+</div>
