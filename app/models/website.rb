@@ -15,7 +15,7 @@ class Website < ActiveRecord::Base
     begin
       Faraday.head(self.url).status
     rescue Faraday::Error::ConnectionFailed
-    'Offline'
+    500
     end
   end
 end
