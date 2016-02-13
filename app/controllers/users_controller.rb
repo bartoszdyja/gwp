@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, except: [:index]
+  before_action :authenticate_user, except: [:new, :create, :index]
 
   def new
     @user = User.new
@@ -31,6 +31,6 @@ class UsersController < ApplicationController
   end
 
   def authenticate_user
-    redirect_to login_path, flash: { error: 'You need to sign in.' } if current_user != User.find(params[:id])
+    redirect_to login_path, flash: { error: 'You need to sign in.' } if current_user.id != params[:id].to_i
   end
 end
