@@ -14,3 +14,4 @@
 
 # Ignore db settings
 /config/database.yml
+/config/secrets.yml
