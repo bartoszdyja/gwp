@@ -5,17 +5,15 @@ class Website < ActiveRecord::Base
   validate :check_url
 
   def check_url
-    errors.add(:url, "I cannot connect to this URL") unless check_status < 400
+    errors.add(:url, 'I cannot connect to this URL') unless check_status < 400
   end
 
   def check_status
-    unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
-      self.url = "http://#{self.url}"
-    end
+    self.url = "http://#{url}" unless url[/\Ahttp:\/\//] || url[/\Ahttps:\/\//]
     begin
-      Faraday.head(self.url).status
+      Faraday.head(url).status
     rescue Faraday::Error::ConnectionFailed
-    500
+      500
     end
   end
 end

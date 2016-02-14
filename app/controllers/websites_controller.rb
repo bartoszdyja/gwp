@@ -17,8 +17,8 @@ class WebsitesController < ApplicationController
 
   def show
     @keyword = Keyword.new
-    @website = Website.find(params[:id])
-    @keywords = @website.keywords
+    @website = Website.includes(:keywords).find(params[:id])
+    # @keywords = @website.keywords
   end
 
   def index

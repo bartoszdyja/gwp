@@ -2,24 +2,19 @@
   <div class="col-md-7 col-md-offset-1">
     <h3><%=@website.name%></h3>
     <hr>
-    <h5>Keywords:</h5>
     <table class='table table-striped'>
       <thead>
         <tr>
           <th>Phrase</th>
           <th>Current google position</th>
-          <th>Highest</th>
-          <th>Lowest</th>
           <th>Edit</th>
         </tr>
       </thead>
       <tbody>
-        <%- @keywords.each do |p| %>
+        <%- @website.keywords.each do |p| %>
           <tr>
             <td><%= p.phrase %></td>
-            <td><%= p.positions.last.try(:rank) %></td>
-            <td><%= p.positions.last.try(:rank) %></td>
-            <td><%= p.positions.last.try(:rank) %></td>
+            <td><%= p.positions.last.try(:formatted_rank) %></td>
             <td><%=link_to 'Destroy', website_keyword_path(@website, p), method: :delete %></td>
           </tr>
         <% end %>
